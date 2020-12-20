@@ -27,18 +27,19 @@ void MainWindow::on_pushButton_clicked()
     changeAccountWindow.exec();
 
     Account *account = changeAccountWindow.account;
+
     if (account->balance > 0) {
         accounts->push_back(*account);
         accounts->update_qlist_widget(ui->listWidget);
     }
 }
 
-Account * MainWindow::get_selected_account(QString text) {
-    Account *result = nullptr;
+Account MainWindow::get_selected_account(QString text) {
+    Account result = Account();
 
     for(auto account : accounts->get_models()) {
         if (account.toQString() == text) {
-            result = &account;
+            result = account;
             break;
         }
     }
@@ -48,16 +49,16 @@ Account * MainWindow::get_selected_account(QString text) {
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    Account *account = get_selected_account(item->text());
-
-    ChangeAccountWindow changeAccountWindow(this, account);
+    Account account = get_selected_account(item->text());
+    qDebug() << account.person.toQString();
+    ChangeAccountWindow changeAccountWindow(this, &account);
     changeAccountWindow.persons = persons;
     changeAccountWindow.setModal(true);
     changeAccountWindow.exec();
 
-    account = changeAccountWindow.account;
-    if (account->balance > 0) {
-        accounts->insert(*account);
+    account = *(changeAccountWindow.account);
+    if (account.balance > 0) {
+        accounts->insert(account);
         accounts->update_qlist_widget(ui->listWidget);
     }
 }

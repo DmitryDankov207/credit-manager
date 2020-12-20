@@ -19,7 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    Account * get_selected_account(QString text);
+    Account get_selected_account(QString text);
 private slots:
     void on_pushButton_clicked();
 

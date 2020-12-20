@@ -13,7 +13,7 @@ ChangeAccountWindow::ChangeAccountWindow(QWidget *parent, Account *account) :
     } else {
         this->account = account;
         ui->lineEdit->setText(QString::number(account->balance));
-//        ui->listWidget->addItem(account->person.toQString());
+        ui->listWidget->addItem(account->person.toQString());
     }
 }
 
@@ -56,17 +56,18 @@ void ChangeAccountWindow::on_listWidget_itemClicked(QListWidgetItem *item)
     }
 }
 
-bool validate_credit(Credit &credit) {
-    return !credit.active && !credit.expired;
+void validate_credit(Credit &credit) {
+    if (credit.active)
+        throw logic_error("Bad cedit history!");
+    else if (credit.expired)
+        throw logic_error("Bad cedit history!");
 }
 
 bool accept_credit(Account &account) {
     if (account.balance < REQUIRED_BALANCE)
         throw logic_error("Balance is less than required!");
-    for (auto credit : account.credits) {
-        if (!validate_credit(credit))
-            throw logic_error("Bad cedit history!");
-    }
+
+    for (auto credit : account.credits) validate_credit(credit);
 
     return true;
 }

@@ -5,7 +5,7 @@
 
 class Credit : AbstractModel
 {
-    friend bool validate_credit(Credit &);
+    friend void validate_credit(Credit &);
 public:
     Credit(double amount) {
         this->amount = amount;
