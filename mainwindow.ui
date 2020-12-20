@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>649</width>
+    <height>456</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Add New</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionView">
+   <property name="text">
+    <string>View</string>
+   </property>
+  </action>
+  <action name="actionPayments">
+   <property name="text">
+    <string>Payments</string>
+   </property>
+  </action>
+  <action name="actionRequests">
+   <property name="text">
+    <string>Requests</string>
+   </property>
+  </action>
+  <action name="actionView_2">
+   <property name="text">
+    <string>View</string>
+   </property>
+  </action>
+  <action name="actionView_3">
+   <property name="text">
+    <string>View</string>
+   </property>
+  </action>
+  <action name="actionAdd_New">
+   <property name="text">
+    <string>Add New</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
