@@ -1,4 +1,4 @@
-#define REQUIRED_BALANCE 100
+#define REQUIRED_SALARY 100
 #include "changeaccountwindow.h"
 #include "ui_changeaccountwindow.h"
 
@@ -12,7 +12,7 @@ ChangeAccountWindow::ChangeAccountWindow(QWidget *parent, Account *account) :
         this->account = new Account();
     } else {
         this->account = account;
-        ui->lineEdit->setText(QString::number(account->balance));
+        ui->lineEdit->setText(QString::number(account->salary));
         ui->listWidget->addItem(account->person.toQString());
     }
 }
@@ -24,7 +24,7 @@ ChangeAccountWindow::~ChangeAccountWindow()
 
 void ChangeAccountWindow::on_buttonBox_accepted()
 {
-    account->balance = ui->lineEdit->displayText().toDouble();
+    account->salary = ui->lineEdit->displayText().toDouble();
 }
 
 void ChangeAccountWindow::on_buttonBox_rejected()
@@ -37,6 +37,8 @@ void ChangeAccountWindow::on_pushButton_clicked()
     ChangePersonWindow changePersonWindow;
     changePersonWindow.setModal(true);
     changePersonWindow.exec();
+
+    qDebug() << changePersonWindow.person.toQString();
 
     persons->push_back(changePersonWindow.person);
     persons->update_qlist_widget(ui->listWidget);
@@ -58,14 +60,14 @@ void ChangeAccountWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 
 void validate_credit(Credit &credit) {
     if (credit.active)
-        throw logic_error("Bad cedit history!");
+        throw logic_error("Credit already exists!");
     else if (credit.expired)
         throw logic_error("Bad cedit history!");
 }
 
 bool accept_credit(Account &account) {
-    if (account.balance < REQUIRED_BALANCE)
-        throw logic_error("Balance is less than required!");
+    if (account.salary < REQUIRED_SALARY)
+        throw logic_error("Salary is less than required!");
 
     for (auto credit : account.credits) validate_credit(credit);
 

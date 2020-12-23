@@ -28,7 +28,7 @@ void MainWindow::on_pushButton_clicked()
 
     Account *account = changeAccountWindow.account;
 
-    if (account->balance > 0) {
+    if (account->salary > 0) {
         accounts->push_back(*account);
         accounts->update_qlist_widget(ui->listWidget);
     }
@@ -57,7 +57,7 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
     changeAccountWindow.exec();
 
     account = *(changeAccountWindow.account);
-    if (account.balance > 0) {
+    if (account.salary > 0) {
         accounts->insert(account);
         accounts->update_qlist_widget(ui->listWidget);
     }

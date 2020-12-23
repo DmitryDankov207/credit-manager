@@ -13,7 +13,7 @@ public:
     QString toQString();
 
     Person person;
-    double balance;
+    double salary;
     vector<Credit> credits;
 };
 

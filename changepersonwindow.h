@@ -13,7 +13,7 @@ class ChangePersonWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ChangePersonWindow(QWidget *parent = nullptr, Person person = Person());
+    explicit ChangePersonWindow(QWidget *parent = nullptr, Person *person = nullptr);
     ~ChangePersonWindow();
 
     Person person;
